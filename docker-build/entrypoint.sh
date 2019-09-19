@@ -50,11 +50,12 @@ IMAGE="${INPUT_REGISTRY_ENDPOINT}/${INPUT_REGISTRY_NAME}/${INPUT_IMAGE_NAME}"
 
 TARGET=""
 if [ ! -z "${INPUT_DOCKERFILE_TARGET}" ]; then
+    echo "Docker build target: ${INPUT_DOCKERFILE_TARGET}"
     TARGET="--target ${INPUT_DOCKERFILE_TARGET}"
 fi
 
 echo "Building image ${IMAGE}:${GIT_COMMIT}..."
-docker build ${TARGET} -t "${IMAGE}:${GIT_COMMIT}" --build-arg binary_path="${INPUT_PATH}" -f "${INPUT_DOCKERFILE}" .
+docker build ${TARGET} -t "${IMAGE}:${GIT_COMMIT}" --build-arg binary_path="${INPUT_BINARY_PATH}" -f "${INPUT_DOCKERFILE}" .
 
 docker tag "${IMAGE}:${GIT_COMMIT}" "${IMAGE}:${BRANCH}"
 
