@@ -76,6 +76,7 @@ It needs to be placed after a go-build action to reuse the output binary.
 
 **Inputs:**
 - `<YOUR_IMAGE_NAME>` must be set to the image name to be built.
+- `<YOUR_DOCKERFILE>` must point to a dockerfile to be built.
 - `<YOUR_REGISTRY>` must be set to the ID of a google cloud registry.
 - `<YOUR_REGISTRY_ENDPOINT>` must be set to the registry uri, ie `eu.gcr.io`
 - `GCR_TOKEN` must be created as a secret variable, containing a private key from a google cloud service account, having proper permissions on the registry.
@@ -93,4 +94,5 @@ It needs to be placed after a go-build action to reuse the output binary.
           registry_name: "<YOUR_REGISTRY>"
           registry_username: _json_key
           registry_password: ${{ secrets.GCR_TOKEN }}
+          dockerfile: <YOUR_DOCKERFILE>
 ```
