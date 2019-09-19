@@ -3,8 +3,6 @@
 set -e
 
 PROJECT="${INPUT_PROJECT}"
-GOOS="${INPUT_GOOS}"
-GOARCH="${INPUT_GOARCH}"
 RACE="${INPUT_RACE}"
 
 # Create netrc file with given username and access token so go get could authenticate to

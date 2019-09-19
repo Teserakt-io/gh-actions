@@ -13,6 +13,7 @@ Build a go binary for a given OS/Arch, and report its path. It requires a cmd/<p
 **Environment variables:**
 - `<YOUR_CI_BOT_USERNAME>` is the name of the github account to authenticate with.
 - `CI_ACCESS_TOKEN` is a secret to be created, containing an access token with `repo` scope
+- `GOOS`, `GOARCH`, `CGO_ENABLED` or any other go build environment variables
 
 **Inputs:**
 - `<LIST_OF_YOUR_BINARIES>` is the list of binaries to be built. They must be sub folders, under a `./cmd/` folder, containing go file(s) with a main function.
@@ -35,10 +36,11 @@ Build a go binary for a given OS/Arch, and report its path. It requires a cmd/<p
         env:
           CI_USERNAME: "<YOUR_CI_BOT_USERNAME>"
           CI_ACCESS_TOKEN: ${{ secrets.CI_ACCESS_TOKEN }}
+          GOOS: ${{ matrix.buildOS }}
+          GOARCH: amd64
+          CGO_ENABLED: 0
         with:
           project: ${{ matrix.project }}
-          goos: ${{ matrix.buildOS }}
-          goarch: amd64
 ```
 
 ## go-test
