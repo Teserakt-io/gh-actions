@@ -5,10 +5,6 @@ inputs:
     description: "The branch name"
     required: true
 
-  binary_path:
-    description: "Binary path"
-    required: true
-
   image_name:
     description: "The name of the image"
     required: true
@@ -36,6 +32,11 @@ inputs:
 
   dockerfile_target:
     description: "The dockerfile target build stage to build"
+    required: false
+    default: ""
+
+  docker_build_args:
+    description: "Extra arguments to add to docker build command"
     required: false
     default: ""
 

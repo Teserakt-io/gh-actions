@@ -2,11 +2,6 @@
 
 set -e
 
-if [ -z "${INPUT_BINARY_PATH}" ]; then
-    echo "Input binary_path is required."
-    exit 1
-fi
-
 if [ -z "${INPUT_IMAGE_NAME}" ]; then
     echo "Input image_name is required."
     exit 1
@@ -55,7 +50,7 @@ if [ ! -z "${INPUT_DOCKERFILE_TARGET}" ]; then
 fi
 
 echo "Building image ${IMAGE}:${GIT_COMMIT}..."
-docker build ${TARGET} -t "${IMAGE}:${GIT_COMMIT}" --build-arg binary_path="${INPUT_BINARY_PATH}" -f "${INPUT_DOCKERFILE}" .
+docker build ${TARGET} -t "${IMAGE}:${GIT_COMMIT}" ${INPUT_DOCKER_BUILD_ARGS} -f "${INPUT_DOCKERFILE}" .
 
 docker tag "${IMAGE}:${GIT_COMMIT}" "${IMAGE}:${BRANCH}"
 
